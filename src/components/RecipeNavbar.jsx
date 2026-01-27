@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const RecipeNavbar = () => {
+const RecipeNavbar = ({ onAddRecipeClick }) => {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -80,6 +80,7 @@ const RecipeNavbar = () => {
             variant="gradient"
             size="sm"
             className="hidden lg:inline-block"
+            onClick={onAddRecipeClick}
           >
             <span>Add Recipe</span>
           </Button>

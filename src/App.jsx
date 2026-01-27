@@ -1,10 +1,35 @@
 // import { Typography, Card } from "@material-tailwind/react";
 import RecipeNavbar from "./components/RecipeNavbar";
+import Footer from "./components/Footer";
+import RecipeCard from "./components/RecipeCard";
+import AddRecipeForm from "./components/AddRecipeForm";
+import { useState } from "react";
 
 export default function App() {
+  const recipeData = [
+    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Spaghetti Bolognese", description: "A classic Italian pasta dish with rich meat sauce." },
+    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Chicken Curry", description: "A flavorful curry dish with tender chicken pieces." },
+    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Vegetable Stir Fry", description: "A quick and healthy stir fry with fresh vegetables." },
+  ];
+
+  const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
+
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
-      <RecipeNavbar />
+      <RecipeNavbar onAddRecipeClick={() => setShowAddRecipeForm(true)} />
+      {showAddRecipeForm && <AddRecipeForm />}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {recipeData.map((recipe, index) => (
+          <RecipeCard
+            key={index}
+            imgSrc={recipe.imgSrc}
+            recipeName={recipe.recipeName}
+            description={recipe.description}
+          />
+        ))}
+      </div>
+      <Footer />
     </div>
   );
 }
