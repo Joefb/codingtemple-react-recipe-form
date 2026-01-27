@@ -17,91 +17,109 @@ const AddRecipeForm = () => {
       </Typography>
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         {/* <form className="mt-8 mb-2 w-full max-w-2xl"> */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-6">
           <div>
-            <p>Recipe Name:</p>
+            <div>
+              <p>Recipe Name:</p>
+              <input
+                className="border border-black"
+                type="text"
+                placeholder="Recipe Name"
+                name="recipeName"
+                minLength={3}
+                maxLength={50}
+                required
+              />
+            </div>
+
+            <div>
+              <p>Servings:</p>
+              <input
+                className="border border-black"
+                type="number"
+                placeholder="Servings"
+                name="servings"
+                minLength={1}
+                maxLength={20}
+                required
+              />
+            </div>
+
+            <div>
+              <p>Description:</p>
+              <textarea
+                className="border border-black h-16 w-full"
+                placeholder="Enter Description..."
+                name="description"
+                minLength={10}
+                maxLength={500}
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <p>Difficulty:</p>
+              <select
+                className="border border-black"
+                name="difficulty"
+              >
+                <option value="">Select an option</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+
+            </div>
+
+            <div>
+              <p>Catagory:</p>
+              <select
+                className="border border-black"
+                name="catagory"
+              >
+                <option value="">Select an option</option>
+                <option value="appetizer">Appatizer</option>
+                <option value="mainCourse">Main Course</option>
+                <option value="desert">Desert</option>
+                <option value="sideDish">Side Dish</option>
+                <option value="beverage">Beverage</option>
+              </select>
+            </div>
+
+            <div>
+              <p>Cuisine Type</p>
+              <select
+                className="border border-black"
+                name="cuisineType"
+              >
+                <option value="">Select an option</option>
+                <option value="american">American</option>
+                <option value="italian">Italian</option>
+                <option value="mexican">Mexican</option>
+                <option value="asian">Asian</option>
+                <option value="mediterranean">Mediterranen</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Enter Image URL(optional)</label>
             <input
               className="border border-black"
-              type="text"
-              placeholder="Recipe Name"
-              name="recipeName"
-              minLength={3}
-              maxLength={50}
-              required
+              type="url"
+              name="image"
+              placeholder="https://example.com/image.jpg"
             />
           </div>
 
           <div>
-            <p>Description:</p>
-            <input
-              className="border border-black"
-              type="text"
-              placeholder="Description"
-              name="description"
-              minLength={10}
-              maxLength={500}
-              required
-            />
-          </div>
-
-          <div>
-            <p>Servings:</p>
-            <input
-              className="border border-black"
-              type="number"
-              placeholder="Servings"
-              name="servings"
-              minLength={1}
-              maxLength={20}
-              required
-            />
-          </div>
-
-          <div>
-            <p>Difficulty:</p>
-            <select
-              className="border border-black"
-              name="difficulty"
-            >
-              <option value="">Select an option</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-
-          </div>
-
-          <div>
-            <p>Catagory:</p>
-            <select
-              className="border border-black"
-              name="catagory"
-            >
-              <option value="">Select an option</option>
-              <option value="appetizer">Appatizer</option>
-              <option value="mainCourse">Main Course</option>
-              <option value="desert">Desert</option>
-              <option value="sideDish">Side Dish</option>
-              <option value="beverage">Beverage</option>
-            </select>
-          </div>
-
-          <div>
-            <p>Cuisine Type</p>
-            <select
-              className="border border-black"
-              name="cuisineType"
-            >
-              <option value="">Select an option</option>
-              <option value="american">American</option>
-              <option value="italian">Italian</option>
-              <option value="mexican">Mexican</option>
-              <option value="asian">Asian</option>
-              <option value="mediterranean">Mediterranen</option>
-              <option value="other">Other</option>
-            </select>
+            <p>Ingredients</p>
           </div>
         </div>
+
         <Button className="mt-6" fullWidth>
           add recipe
         </Button>

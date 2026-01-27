@@ -4,12 +4,14 @@ import Footer from "./components/Footer";
 import RecipeCard from "./components/RecipeCard";
 import AddRecipeForm from "./components/AddRecipeForm";
 import { useState } from "react";
+import card from "@material-tailwind/react/theme/components/card";
 
 export default function App() {
+  const cardImage = "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
   const recipeData = [
-    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Spaghetti Bolognese", description: "A classic Italian pasta dish with rich meat sauce." },
-    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Chicken Curry", description: "A flavorful curry dish with tender chicken pieces." },
-    { imgSrc: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80", recipeName: "Vegetable Stir Fry", description: "A quick and healthy stir fry with fresh vegetables." },
+    { imgSrc: cardImage, recipeName: "Spaghetti Bolognese", description: "A classic Italian pasta dish with rich meat sauce.", servings: 5, difficulty: "Medium", catagory: "Main Course", cuisineType: "Italian" },
+    { imgSrc: cardImage, recipeName: "Chicken Curry", description: "A flavorful curry dish with tender chicken pieces.", servings: 6, difficulty: "Hard", catagory: "Main Course", cuisineType: "Asian" },
+    { imgSrc: cardImage, recipeName: "Vegetable Stir Fry", description: "A quick and healthy stir fry with fresh vegetables.", servings: 3, difficulty: "Easy", catagory: "Side Dish", cuisineType: "Other" },
   ];
 
   const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
@@ -20,7 +22,7 @@ export default function App() {
       {/* {showAddRecipeForm && <AddRecipeForm />} */}
       {showAddRecipeForm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-8 rounded shadow-lg relative">
+          <div className="bg-white p-8 rounded shadow-lg relative w-screen m-10">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               onClick={() => setShowAddRecipeForm(false)}
@@ -39,6 +41,10 @@ export default function App() {
             imgSrc={recipe.imgSrc}
             recipeName={recipe.recipeName}
             description={recipe.description}
+            servings={recipe.servings}
+            difficulty={recipe.difficulty}
+            catagory={recipe.catagory}
+            cuisineType={recipe.cuisineType}
           />
         ))}
       </div>

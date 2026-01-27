@@ -13,7 +13,7 @@ import {
 // Will need to create a details page component, maybe like a pop up.
 
 const RecipeCard = (props) => {
-  const { imgSrc, recipeName, description } = props;
+  const { imgSrc, recipeName, description, servings, difficulty, catagory, cuisineType } = props;
 
   return (
     <Card className="mt-24 w-72">
@@ -31,11 +31,24 @@ const RecipeCard = (props) => {
         <Typography>
           {description}
         </Typography>
+        <div className="my-2 h-px w-full bg-blue-gray-100" />
+        <Typography variant="small" color="gray" className="mb-1">
+          <span className="font-bold">Servings:</span> {servings}
+        </Typography>
+        <Typography variant="small" color="gray" className="mb-1">
+          <span className="font-bold">Difficultly:</span> {difficulty}
+        </Typography>
+        <Typography variant="small" color="gray" className="mb-1">
+          <span className="font-bold">Catagory:</span> {catagory}
+        </Typography>
+        <Typography variant="small" color="gray" className="mb-1">
+          <span className="font-bold">Cuisine Type</span>: {cuisineType}
+        </Typography>
       </CardBody>
       <CardFooter className="pt-0">
         <Button>See Recipe</Button>
       </CardFooter>
-    </Card>
+    </Card >
   )
 }
 
