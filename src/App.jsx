@@ -1,9 +1,10 @@
-import { Typography, Card } from "@material-tailwind/react";
+// import { Typography, Card } from "@material-tailwind/react";
+import RecipeNavbar from "./components/RecipeNavbar";
 
 export default function App() {
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
-      <p>Testing</p>
+      <RecipeNavbar />
     </div>
   );
 }
