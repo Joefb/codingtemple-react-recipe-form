@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Card,
   Input,
@@ -7,6 +8,40 @@ import {
 } from "@material-tailwind/react";
 
 const AddRecipeForm = () => {
+  const [formData, setFormData] = useState({
+    recipeName: "",
+    servings: "",
+    description: "",
+    difficulty: "",
+    catagory: "",
+    cuisineType: "",
+    image: "",
+    ingrediants: [],
+    ingrediantName: "",
+    quanity: 0,
+    measurementUnit: "",
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  }
+
+  const handleIngrediantAdd = () => {
+    const newIngrediant = {
+      name: formData.ingrediantName,
+      quanity: formData.quanity,
+      measurementUnit: formData.measurementUnit,
+    }
+
+    setFormData(prevState => ({
+      ...prevState, ingrediants: [...prevState.ingrediants, newIngrediant]
+    }))
+  }
+
+
+
   return (
     <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
@@ -29,6 +64,8 @@ const AddRecipeForm = () => {
                 minLength={3}
                 maxLength={50}
                 required
+                value={formData.recipeName}
+                onChange={handleChange}
               />
             </div>
 
@@ -42,6 +79,8 @@ const AddRecipeForm = () => {
                 minLength={1}
                 maxLength={20}
                 required
+                value={formData.servings}
+                onChange={handleChange}
               />
             </div>
 
@@ -54,6 +93,8 @@ const AddRecipeForm = () => {
                 minLength={10}
                 maxLength={500}
                 required
+                value={formData.description}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -64,6 +105,8 @@ const AddRecipeForm = () => {
               <select
                 className="border border-black"
                 name="difficulty"
+                value={formData.difficulty}
+                onChange={handleChange}
               >
                 <option value="">Select an option</option>
                 <option value="easy">Easy</option>
@@ -78,6 +121,8 @@ const AddRecipeForm = () => {
               <select
                 className="border border-black"
                 name="catagory"
+                value={formData.catagory}
+                onChange={handleChange}
               >
                 <option value="">Select an option</option>
                 <option value="appetizer">Appatizer</option>
@@ -93,6 +138,8 @@ const AddRecipeForm = () => {
               <select
                 className="border border-black"
                 name="cuisineType"
+                value={formData.cuisineType}
+                onChange={handleChange}
               >
                 <option value="">Select an option</option>
                 <option value="american">American</option>
@@ -112,12 +159,47 @@ const AddRecipeForm = () => {
               type="url"
               name="image"
               placeholder="https://example.com/image.jpg"
+              value={formData.image}
+              onChange={handleChange}
             />
           </div>
 
           <div>
             <p>Ingredients</p>
+            <input
+              className="border border-black"
+              name="ingrediantName"
+              type="text"
+              placeholder="Enter ingrediant name"
+              value={formData.ingrediantName}
+              onChange={handleChange}
+            />
+            <input
+              className="border border-black"
+              name="quanity"
+              type="number"
+              placeholder="Enter quanity"
+              value={formData.quanity}
+              onChange={handleChange}
+            />
+
+            <select
+              className="border border-black"
+              name="measurementUnit"
+              value={formData.measurementUnit}
+              onChange={handleChange}
+            >
+              <option value="">Select unit</option>
+              <option value="cups">cups</option>
+              <option value="tablespoons">tablespoons</option>
+              <option value="teaspoons">teaspoons</option>
+              <option value="grams">grams</option>
+              <option value="ounces">ounces</option>
+              <option value="pounds">pounds</option>
+              <option value="pieces">pieces</option>
+            </select>
           </div>
+          <Button fullWidth onClick={handleIngrediantAdd}>Add Another Ingrediant</Button>
         </div>
 
         <Button className="mt-6" fullWidth>
