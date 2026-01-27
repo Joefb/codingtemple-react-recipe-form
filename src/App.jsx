@@ -17,7 +17,20 @@ export default function App() {
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
       <RecipeNavbar onAddRecipeClick={() => setShowAddRecipeForm(true)} />
-      {showAddRecipeForm && <AddRecipeForm />}
+      {/* {showAddRecipeForm && <AddRecipeForm />} */}
+      {showAddRecipeForm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded shadow-lg relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowAddRecipeForm(false)}
+            >
+              &times;
+            </button>
+            <AddRecipeForm />
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {recipeData.map((recipe, index) => (
