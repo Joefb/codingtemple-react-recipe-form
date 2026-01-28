@@ -65,7 +65,6 @@ const RecipeNavbar = ({ onAddRecipeClick }) => {
 
   return (
     <div className="-m-6 max-h-[768px] w-[calc(100%+48px)] overflow-scroll">
-      {/* <div className="h-20 w-full"> */}
       <Navbar className="sticky top-0 z-10 h-max max-w-full bg-gray-100 rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
