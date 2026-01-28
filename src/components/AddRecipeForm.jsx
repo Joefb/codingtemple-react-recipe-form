@@ -16,7 +16,7 @@ const AddRecipeForm = () => {
     catagory: "",
     cuisineType: "",
     image: "",
-    ingrediants: [],
+    ingredients: [],
     ingrediantName: "",
     quanity: 0,
     measurementUnit: "",
@@ -29,14 +29,14 @@ const AddRecipeForm = () => {
   }
 
   const handleIngrediantAdd = () => {
-    const newIngrediant = {
+    const newIngredient = {
       name: formData.ingrediantName,
       quanity: formData.quanity,
       measurementUnit: formData.measurementUnit,
     }
 
     setFormData(prevState => ({
-      ...prevState, ingrediants: [...prevState.ingrediants, newIngrediant]
+      ...prevState, ingredients: [...prevState.ingredients, newIngredient]
     }))
   }
 
@@ -50,162 +50,171 @@ const AddRecipeForm = () => {
       <Typography color="gray" className="mt-1 font-normal">
         Nom nom nom!! Add your recipe here!
       </Typography>
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-        {/* <form className="mt-8 mb-2 w-full max-w-2xl"> */}
-        <div className="flex flex-col gap-6">
-          <div>
+      <div className="flex justify-evenly">
+        <form className="mt-8 mb-2 w-80 sm:w-96 lg:w-1/2">
+          {/* <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"> */}
+          {/* <form className="mt-8 mb-2 w-1/2"> */}
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2 justify-between">
+              <div>
+                <p>Recipe Name:</p>
+                <input
+                  className="border border-black"
+                  type="text"
+                  placeholder="Recipe Name"
+                  name="recipeName"
+                  minLength={3}
+                  maxLength={50}
+                  required
+                  value={formData.recipeName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <p>Servings:</p>
+                <input
+                  className="border border-black"
+                  type="number"
+                  placeholder="Servings"
+                  name="servings"
+                  minLength={1}
+                  maxLength={20}
+                  required
+                  value={formData.servings}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <p>Description:</p>
+                <textarea
+                  className="border border-black h-16 w-full"
+                  placeholder="Enter Description..."
+                  name="description"
+                  minLength={10}
+                  maxLength={500}
+                  required
+                  value={formData.description}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
             <div>
-              <p>Recipe Name:</p>
+              <div>
+                <p>Difficulty:</p>
+                <select
+                  className="border border-black"
+                  name="difficulty"
+                  value={formData.difficulty}
+                  onChange={handleChange}
+                >
+                  <option value="">Select an option</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+
+              <div>
+                <p>Catagory:</p>
+                <select
+                  className="border border-black"
+                  name="catagory"
+                  value={formData.catagory}
+                  onChange={handleChange}
+                >
+                  <option value="">Select an option</option>
+                  <option value="appetizer">Appatizer</option>
+                  <option value="mainCourse">Main Course</option>
+                  <option value="desert">Desert</option>
+                  <option value="sideDish">Side Dish</option>
+                  <option value="beverage">Beverage</option>
+                </select>
+              </div>
+
+              <div>
+                <p>Cuisine Type</p>
+                <select
+                  className="border border-black"
+                  name="cuisineType"
+                  value={formData.cuisineType}
+                  onChange={handleChange}
+                >
+                  <option value="">Select an option</option>
+                  <option value="american">American</option>
+                  <option value="italian">Italian</option>
+                  <option value="mexican">Mexican</option>
+                  <option value="asian">Asian</option>
+                  <option value="mediterranean">Mediterranen</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label>Enter Image URL(optional)</label>
               <input
                 className="border border-black"
-                type="text"
-                placeholder="Recipe Name"
-                name="recipeName"
-                minLength={3}
-                maxLength={50}
-                required
-                value={formData.recipeName}
+                type="url"
+                name="image"
+                placeholder="https://example.com/image.jpg"
+                value={formData.image}
                 onChange={handleChange}
               />
             </div>
 
-            <div>
-              <p>Servings:</p>
+            <div className="border-2 rounded-md border-black p-2">
+              <p className="font-bold">Add Ingredients</p>
               <input
-                className="border border-black"
+                className="border border-black m-1 w-16 p-1"
+                name="quanity"
                 type="number"
-                placeholder="Servings"
-                name="servings"
-                minLength={1}
-                maxLength={20}
-                required
-                value={formData.servings}
+                placeholder="Enter quanity"
+                value={formData.quanity}
                 onChange={handleChange}
               />
-            </div>
 
-            <div>
-              <p>Description:</p>
-              <textarea
-                className="border border-black h-16 w-full"
-                placeholder="Enter Description..."
-                name="description"
-                minLength={10}
-                maxLength={500}
-                required
-                value={formData.description}
+              <select
+                className="border border-black m-1 p-1"
+                name="measurementUnit"
+                value={formData.measurementUnit}
+                onChange={handleChange}
+              >
+                <option value="">Select unit</option>
+                <option value="cups">cups</option>
+                <option value="tablespoons">tablespoons</option>
+                <option value="teaspoons">teaspoons</option>
+                <option value="grams">grams</option>
+                <option value="ounces">ounces</option>
+                <option value="pounds">pounds</option>
+                <option value="pieces">pieces</option>
+              </select>
+              <span>of</span>
+              <input
+                className="border border-black m-1 p-1"
+                name="ingrediantName"
+                type="text"
+                placeholder="Enter ingrediant name"
+                value={formData.ingrediantName}
                 onChange={handleChange}
               />
+              <Button color="blue" size="sm" className="w-full h-16 mt-1" onClick={handleIngrediantAdd}>Add Ingrediant</Button>
             </div>
           </div>
-
-          <div>
-            <div>
-              <p>Difficulty:</p>
-              <select
-                className="border border-black"
-                name="difficulty"
-                value={formData.difficulty}
-                onChange={handleChange}
-              >
-                <option value="">Select an option</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-
-            </div>
-
-            <div>
-              <p>Catagory:</p>
-              <select
-                className="border border-black"
-                name="catagory"
-                value={formData.catagory}
-                onChange={handleChange}
-              >
-                <option value="">Select an option</option>
-                <option value="appetizer">Appatizer</option>
-                <option value="mainCourse">Main Course</option>
-                <option value="desert">Desert</option>
-                <option value="sideDish">Side Dish</option>
-                <option value="beverage">Beverage</option>
-              </select>
-            </div>
-
-            <div>
-              <p>Cuisine Type</p>
-              <select
-                className="border border-black"
-                name="cuisineType"
-                value={formData.cuisineType}
-                onChange={handleChange}
-              >
-                <option value="">Select an option</option>
-                <option value="american">American</option>
-                <option value="italian">Italian</option>
-                <option value="mexican">Mexican</option>
-                <option value="asian">Asian</option>
-                <option value="mediterranean">Mediterranen</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label>Enter Image URL(optional)</label>
-            <input
-              className="border border-black"
-              type="url"
-              name="image"
-              placeholder="https://example.com/image.jpg"
-              value={formData.image}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <p>Ingredients</p>
-            <input
-              className="border border-black"
-              name="ingrediantName"
-              type="text"
-              placeholder="Enter ingrediant name"
-              value={formData.ingrediantName}
-              onChange={handleChange}
-            />
-            <input
-              className="border border-black"
-              name="quanity"
-              type="number"
-              placeholder="Enter quanity"
-              value={formData.quanity}
-              onChange={handleChange}
-            />
-
-            <select
-              className="border border-black"
-              name="measurementUnit"
-              value={formData.measurementUnit}
-              onChange={handleChange}
-            >
-              <option value="">Select unit</option>
-              <option value="cups">cups</option>
-              <option value="tablespoons">tablespoons</option>
-              <option value="teaspoons">teaspoons</option>
-              <option value="grams">grams</option>
-              <option value="ounces">ounces</option>
-              <option value="pounds">pounds</option>
-              <option value="pieces">pieces</option>
-            </select>
-          </div>
-          <Button fullWidth onClick={handleIngrediantAdd}>Add Another Ingrediant</Button>
+        </form>
+        <div className="flex flex-col border-2 rounded-md border-black mb-2 mt-4 p-4 w-1/3">
+          <p className="font-bold">Ingredient List:</p>
+          <ul>
+            {formData.ingredients.map((ingredient, index) => (
+              <div>
+                <p>{ingredient.quanity} {ingredient.measurementUnit} of {ingredient.name}</p>
+              </div>
+            ))}
+          </ul>
         </div>
-
-        <Button className="mt-6" fullWidth>
-          add recipe
-        </Button>
-      </form>
+      </div>
+      <Button className="mt-6 h-24" color="green" fullWidth>
+        add recipe
+      </Button>
     </Card >
   );
 }
