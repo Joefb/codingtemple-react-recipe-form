@@ -81,6 +81,7 @@ const RecipeNavbar = ({ onAddRecipeClick }) => {
             size="sm"
             className="hidden lg:inline-block"
             onClick={onAddRecipeClick}
+            color="blue"
           >
             <span>Add Recipe</span>
           </Button>
@@ -98,7 +99,7 @@ const RecipeNavbar = ({ onAddRecipeClick }) => {
         </div>
         <Collapse open={openNav}>
           {navList}
-          <Button fullWidth variant="gradient" size="sm" className="">
+          <Button fullWidth color="blue" variant="gradient" size="sm" className="">
             <span>Add Recipe</span>
           </Button>
         </Collapse>
