@@ -130,9 +130,9 @@ const AddRecipeForm = ({ recipesData, setRecipesData }) => {
                 >
                   <option value="">Select an option</option>
                   <option value="appetizer">Appatizer</option>
-                  <option value="mainCourse">Main Course</option>
+                  <option value="main course">Main Course</option>
                   <option value="desert">Desert</option>
-                  <option value="sideDish">Side Dish</option>
+                  <option value="side dish">Side Dish</option>
                   <option value="beverage">Beverage</option>
                 </select>
               </div>
