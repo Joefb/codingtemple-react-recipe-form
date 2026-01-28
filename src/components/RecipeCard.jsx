@@ -13,12 +13,10 @@ import {
 // Will need to create a details page component, maybe like a pop up.
 
 const RecipeCard = (props) => {
-  const { index, imgSrc, recipeName, description, servings, difficulty, catagory, cuisineType, recipesData, setRecipesData } = props;
+  const { setRecipeIndex, onAddRecipeClick, index, imgSrc, recipeName, description, servings, difficulty, catagory, cuisineType, recipesData, setRecipesData } = props;
 
   const handleDelete = () => {
-    console.log("Delete recipe:", recipeName);
-    console.log("Index:", index)
-    setRecipesData(prev => prev.filter((item, idx) => idx !== index))
+    setRecipesData(prevState => prevState.filter((item, idx) => idx !== index))
   }
 
   return (
@@ -52,7 +50,10 @@ const RecipeCard = (props) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0 flex flex-col justify-center">
-        <Button color="blue">See Recipe</Button>
+        <Button color="blue" onClick={() => {
+          onAddRecipeClick()
+          setRecipeIndex(index)
+        }}>See Recipe</Button>
         <Button color="red" fullWidth className="mt-3" onClick={handleDelete}>Delete Recipe</Button>
       </CardFooter>
     </Card >

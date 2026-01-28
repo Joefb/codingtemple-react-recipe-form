@@ -10,7 +10,8 @@ export default function App() {
   const [recipesData, setRecipesData] = useState([]);
 
   const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
-  const [showRecipeDetails, setShowRecipeDetails] = useState(false)
+  const [showRecipe, setShowRecipe] = useState(false)
+  const [recipeIndex, setRecipeIndex] = useState(null)
 
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
@@ -29,9 +30,27 @@ export default function App() {
         </div>
       )}
 
+      {showRecipe && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded shadow-lg relative w-screen m-10">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowRecipe(false)}
+            >
+              &times;
+            </button>
+            <p>
+              {recipesData[recipeIndex].recipeName}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {recipesData.map((recipe, index) => (
           <RecipeCard
+            onAddRecipeClick={() => setShowRecipe(true)}
+            setRecipeIndex={setRecipeIndex}
             key={index}
             index={index}
             imgSrc={recipe.image}
