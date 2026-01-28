@@ -14,6 +14,24 @@ export default function App() {
     { imgSrc: cardImage, recipeName: "Vegetable Stir Fry", description: "A quick and healthy stir fry with fresh vegetables.", servings: 3, difficulty: "Easy", catagory: "Side Dish", cuisineType: "Other" },
   ];
 
+  const [recipesData, setRecipesData] = useState([]);
+
+
+  // const [formData, setFormData] = useState({
+  //   recipeName: "",
+  //   servings: "",
+  //   description: "",
+  //   difficulty: "",
+  //   catagory: "",
+  //   cuisineType: "",
+  //   image: "",
+  //   ingredients: [],
+  //   ingrediantName: "",
+  //   quanity: 0,
+  //   measurementUnit: "",
+  // })
+
+
   const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
 
   return (
@@ -29,7 +47,7 @@ export default function App() {
             >
               &times;
             </button>
-            <AddRecipeForm />
+            <AddRecipeForm recipesData={recipesData} setRecipesData={setRecipesData} />
           </div>
         </div>
       )}

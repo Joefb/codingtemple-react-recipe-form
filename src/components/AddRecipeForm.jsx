@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-const AddRecipeForm = () => {
+const AddRecipeForm = ({ recipesData, setRecipesData }) => {
   const [formData, setFormData] = useState({
     recipeName: "",
     servings: "",
@@ -26,6 +26,12 @@ const AddRecipeForm = () => {
     const { name, value } = e.target;
 
     setFormData(prevState => ({ ...prevState, [name]: value }));
+  }
+
+  const handleAddedRecipe = () => {
+    const newRecipe = formData;
+
+    setRecipesData(prevState => ([...prevState, newRecipe]));
   }
 
   const handleIngrediantAdd = () => {
@@ -212,7 +218,8 @@ const AddRecipeForm = () => {
           </ul>
         </div>
       </div>
-      <Button className="mt-6 h-24" color="green" fullWidth>
+      {/* <Button className="mt-6 h-24" color="green" fullWidth> */}
+      <Button className="mt-6 h-24" color="green" fullWidth onClick={handleAddedRecipe}>
         add recipe
       </Button>
     </Card >
