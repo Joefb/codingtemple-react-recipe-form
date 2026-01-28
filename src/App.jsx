@@ -10,6 +10,7 @@ export default function App() {
   const [recipesData, setRecipesData] = useState([]);
 
   const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
+  const [showRecipeDetails, setShowRecipeDetails] = useState(false)
 
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
@@ -32,6 +33,7 @@ export default function App() {
         {recipesData.map((recipe, index) => (
           <RecipeCard
             key={index}
+            index={index}
             imgSrc={recipe.image}
             recipeName={recipe.recipeName}
             description={recipe.description}
@@ -39,6 +41,8 @@ export default function App() {
             difficulty={recipe.difficulty}
             catagory={recipe.catagory}
             cuisineType={recipe.cuisineType}
+            recipesData={recipesData}
+            setRecipesData={setRecipesData}
           />
         ))}
       </div>
