@@ -29,10 +29,14 @@ const AddRecipeForm = ({ recipesData, setRecipesData }) => {
   }
 
   const handleAddedRecipe = () => {
-    const newRecipe = formData;
+    const updatedFormData = {
+      ...formData,
+      image: formData.image === "" ? "https://images.pexels.com/photos/3851088/pexels-photo-3851088.jpeg" : formData.image
+    };
 
-    setRecipesData(prevState => ([...prevState, newRecipe]));
-  }
+    setFormData(updatedFormData);
+    setRecipesData(prevState => ([...prevState, updatedFormData]));
+  };
 
   const handleIngrediantAdd = () => {
     const newIngredient = {
@@ -46,8 +50,6 @@ const AddRecipeForm = ({ recipesData, setRecipesData }) => {
     }))
   }
 
-
-
   return (
     <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
@@ -58,8 +60,6 @@ const AddRecipeForm = ({ recipesData, setRecipesData }) => {
       </Typography>
       <div className="flex justify-evenly">
         <form className="mt-8 mb-2 w-80 sm:w-96 lg:w-1/2">
-          {/* <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"> */}
-          {/* <form className="mt-8 mb-2 w-1/2"> */}
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2 justify-between">
               <div>
